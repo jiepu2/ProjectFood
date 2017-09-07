@@ -26,7 +26,7 @@ def media_search(lat,lng,access_token):
                 f.write(p.content)
                 f.close()
             print("Image No." + str(i+j*20) + " Downloaded")
-            max_timestamp = int(resp['data'][i]['created_time'])
+            max_timestamp = int(resp['data'][i]['created_time'])-1
 
 location=input("Please enter the city name.\n")
 c=coordinates(location)
