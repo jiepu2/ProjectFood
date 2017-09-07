@@ -18,6 +18,7 @@ def media_search(lat,lng,access_token):
         r=requests.get(url)
         resp=json.loads(r.text)
         num = 20
+        timestamps=[]
         for i in range(num):
             pic_url=resp['data'][i]['images']['standard_resolution']['url']         #getting the image url
             p=requests.get(pic_url)
@@ -26,7 +27,8 @@ def media_search(lat,lng,access_token):
                 f.write(p.content)
                 f.close()
             print("Image No." + str(i+j*20) + " Downloaded")
-            max_timestamp = int(resp['data'][i]['created_time'])-1
+            timestamps.append(int(resp['data'][i]['created_time']))
+        max_timestamp = min(timestamps) - 60
 
 location=input("Please enter the city name.\n")
 c=coordinates(location)
